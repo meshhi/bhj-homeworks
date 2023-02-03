@@ -7,8 +7,10 @@ menuLinks.forEach((menuLink) => {
     }
 
     for(let item of menuLinks) {
-      if (item?.nextElementSibling ? item.nextElementSibling.classList.contains('menu_sub') : false) {
-        item.nextElementSibling.classList.remove('menu_active');
+      if (item !== menuLink) {
+        if (item?.nextElementSibling ? item.nextElementSibling.classList.contains('menu_sub') : false) {
+          item.nextElementSibling.classList.remove('menu_active');
+        }
       }
     }
 
