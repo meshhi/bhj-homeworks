@@ -1,18 +1,17 @@
-const revealBlock = document.querySelector('.reveal');
+const revealBlocks = document.querySelectorAll('.reveal');
 
-document.addEventListener('scroll', function(event) {
-  const wh = window.innerHeight;
-  const {top, bottom} = revealBlock.getBoundingClientRect();
+revealBlocks.forEach((item) => {
+      addEventListener('scroll', function(event) {
+      const wh = window.innerHeight;
+      const {top, bottom} = item.getBoundingClientRect();
 
-  console.log(`wh, top, bottom`);
-  console.log(wh, top, bottom);
+      const whAccur = (wh - top > 0 && top > 0) || (wh - bottom > 0 && bottom > 0);
 
-  console.log(`(wh - Math.abs(wh - top)) > 0`);
-  console.log(wh - Math.abs(wh - top));
-
-  if ((wh - Math.abs(wh - top)) > 0) {
-    revealBlock.classList.add('reveal_active');
-  } else {
-    revealBlock.classList.remove('reveal_active');
+      if (whAccur) {
+        item.classList.add('reveal_active');
+      } else {
+        item.classList.remove('reveal_active');
+      }
+    })
   }
-})
+)
