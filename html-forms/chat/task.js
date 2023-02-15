@@ -22,8 +22,13 @@ const initiateTimeoutMsgListener = function() {
 
 let intervalId = initiateTimeoutMsgListener();
 
-document.querySelector('.chat-widget').addEventListener('click', function(event) {
-  event.target.closest('.chat-widget').classList.add('chat-widget_active');
+window.addEventListener('click', function(event) {
+  debugger
+  if (event.target.closest('.chat-widget') !== null) {
+    event.target.closest('.chat-widget').classList.add('chat-widget_active');
+  } else {
+    document.querySelector('.chat-widget_active').classList.remove('chat-widget_active');
+  }
 });
 
 document.querySelector('.chat-widget__input').addEventListener('keydown', function(event) {
@@ -42,7 +47,9 @@ document.querySelector('.chat-widget__input').addEventListener('keydown', functi
     <div class="message">
       <div class="message__time">${generateCurrentTime()}</div>
       <div class="message__text">${randomMsg[Math.floor(Math.random() * randomMsg.length)]}</div>
-    </div>`
+    </div>`;
+
+    event.target.value = '';
 
     scrollMsgContainer();
   };
