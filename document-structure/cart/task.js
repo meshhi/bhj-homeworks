@@ -86,8 +86,26 @@ decButtons.forEach(el => el.addEventListener('click', handleDecrement));
 addButtons.forEach(el => el.addEventListener('click', handleAddToBasket));
 
 
-const initiateTraaaaash = () => {
-  document.querySelectorAll('.product__add').forEach(el => setInterval(() => el.click(), 100));
+const stopTrash = (intervals) => {
+  intervals.forEach(interval => clearInterval(interval));
+};
+
+const initiateTraaaaash = (callback) => {
+  const intervals = [];
+  document.querySelectorAll('.product__add').forEach(el => {
+    const intervalId = setInterval(() => el.click(), 100);
+    intervals.push(intervalId);
+  })
+
+  const stopInterval = setInterval(() => {
+    const isStop = confirm('Stop trash?');
+  
+    if (isStop) {
+      clearInterval(stopInterval);
+      stopTrash(intervals);
+    }
+  }, 5000);
 }
 
 initiateTraaaaash();
+
