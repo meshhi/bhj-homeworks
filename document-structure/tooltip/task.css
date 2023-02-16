@@ -5,6 +5,8 @@
 .has-tooltip {
   color: #000;
   background: yellow;
+  display: inline-block;
+  position: relative;
 }
 
 .has-tooltip:hover {
@@ -22,4 +24,5 @@
 
 .tooltip_active {
   display: block;
+  position: absolute;
 }
