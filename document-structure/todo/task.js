@@ -14,6 +14,7 @@ const generateTaskHTML = (text) => {
 };
 
 const deleteTask = (event) => {
+  console.log('init')
   event.preventDefault();
   event.target.closest('.task').remove();
   localStorage.setItem(`task-list`, taskList.innerHTML);
