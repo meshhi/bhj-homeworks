@@ -4,35 +4,35 @@ const generateTooltip = (text, position, width, height) => {
   tooltip.classList.add('tooltip_active');
   tooltip.innerText = text;
 
-  let positionOption;
-  switch(position) {
-    case('bottom'):
-      positionOption = `${0 - height}px`;
-      // positionOption = `${0 - tooltip.clientHeight}px`;
-      tooltip.style.top = positionOption;
-      break;
+  // let positionOption;
+  // switch(position) {
+  //   case('bottom'):
+  //     positionOption = `${0 - height}px`;
+  //     // positionOption = `${0 - tooltip.clientHeight}px`;
+  //     tooltip.style.top = positionOption;
+  //     break;
 
-    case('top'):
-      positionOption = `${0 + height}px`;
-      // positionOption = `${0 - tooltip.clientHeight}px`;
-      tooltip.style.bottom = positionOption;
-      break;  
+  //   case('top'):
+  //     positionOption = `${0 + height}px`;
+  //     // positionOption = `${0 - tooltip.clientHeight}px`;
+  //     tooltip.style.bottom = positionOption;
+  //     break;  
     
-    case('left'):
-      positionOption = `${0 - width}px`;
-      tooltip.style.right = positionOption;
-      tooltip.style.top = '0px';
-      break;  
+  //   case('left'):
+  //     positionOption = `${0 - width}px`;
+  //     tooltip.style.right = positionOption;
+  //     tooltip.style.top = '0px';
+  //     break;  
     
-    case('right'):
-      positionOption = `${0 + width}px`;
-      tooltip.style.left = positionOption;
-      tooltip.style.top = '0px';
-      break;
+  //   case('right'):
+  //     positionOption = `${0 + width}px`;
+  //     tooltip.style.left = positionOption;
+  //     tooltip.style.top = '0px';
+  //     break;
 
-    default:
-      break;
-  }
+  //   default:
+  //     break;
+  // }
 
   return tooltip
 }
@@ -52,7 +52,7 @@ const handleClick = function(event) {
   const tooltipPosition = event.target.dataset.position;
   const [width, height] = [event.target.clientWidth, event.target.clientHeight]
 
-  event.target.insertAdjacentElement('beforeEnd', generateTooltip(tooltipText, tooltipPosition ? tooltipPosition : 'bottom', width, height));
+  event.target.insertAdjacentElement('afterend', generateTooltip(tooltipText, tooltipPosition ? tooltipPosition : 'bottom', width, height));
 };
 
 const handleGlobalClick = function(event) {

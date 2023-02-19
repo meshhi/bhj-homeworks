@@ -38,7 +38,7 @@ const animate = (good) => {
 }
 
 const addGoodToBasket = (id, value, imageSrc) => {
-  const foundItem = Array.from(document.querySelectorAll('.cart__product')).filter(el => el.dataset.id === id)[0];
+  const foundItem = Array.from(document.querySelectorAll('.cart__product')).find(el => el.dataset.id === id);
 
   if (foundItem) {
     foundItem.querySelector('.cart__product-count').textContent = Number(foundItem.querySelector('.cart__product-count').textContent) + value;
