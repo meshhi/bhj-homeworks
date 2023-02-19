@@ -32,7 +32,7 @@ window.addEventListener('click', function(event) {
 });
 
 document.querySelector('.chat-widget__input').addEventListener('keydown', function(event) {
-  if (event.keyCode === 13 && event.target.value) {
+  if (event.keyCode === 13 && event.target.value.trim()) {
     clearInterval(intervalId);
     intervalId = initiateTimeoutMsgListener();
     msgContainer.innerHTML +=   `
