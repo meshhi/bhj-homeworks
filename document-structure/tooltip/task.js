@@ -1,38 +1,41 @@
-const generateTooltip = (text, position, width, height) => {
+const generateTooltip = (text, position, size) => {
   const tooltip = document.createElement('div');
   tooltip.classList.add('tooltip');
   tooltip.classList.add('tooltip_active');
   tooltip.innerText = text;
+  
+  console.log(size)
 
-  // let positionOption;
-  // switch(position) {
-  //   case('bottom'):
-  //     positionOption = `${0 - height}px`;
-  //     // positionOption = `${0 - tooltip.clientHeight}px`;
-  //     tooltip.style.top = positionOption;
-  //     break;
+  const tempCopy = tooltip.cloneNode(true);
+  document.querySelector('body').appendChild(tempCopy);
+  const tootipWidth = tempCopy.clientWidth;
+  const tootipHeight = tempCopy.clientHeight;
+  tempCopy.remove();
 
-  //   case('top'):
-  //     positionOption = `${0 + height}px`;
-  //     // positionOption = `${0 - tooltip.clientHeight}px`;
-  //     tooltip.style.bottom = positionOption;
-  //     break;  
+  switch(position) {
+    case('bottom'):
+      tooltip.style.top = size.bottom + 'px';
+      tooltip.style.left = size.left + 'px';
+      break;
+
+    case('top'):
+      tooltip.style.top = size.top - tootipHeight + 'px';
+      tooltip.style.left = size.left + 'px';
+      break;  
     
-  //   case('left'):
-  //     positionOption = `${0 - width}px`;
-  //     tooltip.style.right = positionOption;
-  //     tooltip.style.top = '0px';
-  //     break;  
+    case('left'):
+      tooltip.style.top = size.bottom - size.height + 'px';
+      tooltip.style.left = size.left - tootipWidth + 'px';
+      break;  
     
-  //   case('right'):
-  //     positionOption = `${0 + width}px`;
-  //     tooltip.style.left = positionOption;
-  //     tooltip.style.top = '0px';
-  //     break;
+    case('right'):
+      tooltip.style.top = size.bottom - size.height + 'px';
+      tooltip.style.left = size.right + 'px';
+      break;
 
-  //   default:
-  //     break;
-  // }
+    default:
+      break;
+  }
 
   return tooltip
 }
@@ -50,9 +53,10 @@ const handleClick = function(event) {
 
   const tooltipText = event.target.getAttribute('title');
   const tooltipPosition = event.target.dataset.position;
-  const [width, height] = [event.target.clientWidth, event.target.clientHeight]
+  // const [width, height] = [event.target.clientWidth, event.target.clientHeight]
+  const size = event.target.getBoundingClientRect();
 
-  event.target.insertAdjacentElement('afterend', generateTooltip(tooltipText, tooltipPosition ? tooltipPosition : 'bottom', width, height));
+  event.target.insertAdjacentElement('afterend', generateTooltip(tooltipText, tooltipPosition ? tooltipPosition : 'bottom', size));
 };
 
 const handleGlobalClick = function(event) {
