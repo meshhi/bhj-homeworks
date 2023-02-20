@@ -40,6 +40,7 @@ addBtn.addEventListener('click', (event) => {
     taskList.appendChild(generateTaskHTML(input.value));
     tasksList.push(input.value.trim());
     localStorage.setItem(`task-list`, tasksList.join(','));
+    input.value = '';
   }
 });
 
