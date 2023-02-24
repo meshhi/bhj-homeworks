@@ -4,3 +4,4 @@ document.getElementById("file").onchange = function() {
   fileName = fileName[fileName.length - 1];
   fileDesc.textContent = fileName;
 };
+
